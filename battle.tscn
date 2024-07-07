@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjph4qxf677ut"]
+
+[ext_resource type="PackedScene" uid="uid://t6ndyokhov0s" path="res://enemy_group.tscn" id="1_6bn48"]
+[ext_resource type="Script" path="res://battle.gd" id="1_y03p1"]
+[ext_resource type="PackedScene" uid="uid://djo6nhex3sb5t" path="res://player_group.tscn" id="2_qd717"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_y03p1")
+
+[node name="PlayerGroup" parent="." instance=ExtResource("2_qd717")]
+unique_name_in_owner = true
+
+[node name="EnemyGroup" parent="." instance=ExtResource("1_6bn48")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -156.0
+offset_right = -79.0
+offset_bottom = -54.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="Fight" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Fight
+"
+
+[node name="Defend" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Defend"
+
+[node name="Fight3" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Run
+"
+
+[connection signal="make_choice" from="PlayerGroup" to="." method="_on_player_group_make_choice"]
+[connection signal="make_choice" from="PlayerGroup" to="EnemyGroup" method="_on_player_group_make_choice"]
+[connection signal="next_player_turn" from="EnemyGroup" to="PlayerGroup" method="_on_enemy_group_next_player_turn"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Fight" to="." method="_on_fight_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Defend" to="PlayerGroup" method="_on_defend_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Defend" to="EnemyGroup" method="_on_defend_pressed"]

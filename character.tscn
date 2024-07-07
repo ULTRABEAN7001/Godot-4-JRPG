@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtk2vi36hmld8"]
+
+[ext_resource type="Texture2D" uid="uid://dvbb0sn2pmsx0" path="res://owlfoxes.png" id="1_adta0"]
+[ext_resource type="Script" path="res://character.gd" id="1_lgemv"]
+[ext_resource type="Texture2D" uid="uid://d3wefsmt3kall" path="res://arrow.png" id="2_wkyil"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq11n"]
+atlas = ExtResource("1_adta0")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pusyw"]
+bg_color = Color(0.336608, 0.336608, 0.336608, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyttf"]
+bg_color = Color(0, 0.727322, 0.119065, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_r8wpm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qk31n"]
+resource_name = "hurt"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(30, 30, 30, 1), Color(1, 1, 1, 1), Color(30, 30, 30, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a1cei"]
+resource_name = "defended"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 69.893, 1), Color(1, 1, 1, 1), Color(1, 1, 69.893, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_joh0y"]
+_data = {
+"RESET": SubResource("Animation_r8wpm"),
+"defended": SubResource("Animation_a1cei"),
+"hurt": SubResource("Animation_qk31n")
+}
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_lgemv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_wq11n")
+flip_h = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 50.0
+offset_bottom = 1.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_pusyw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gyttf")
+value = 50.0
+show_percentage = false
+
+[node name="Pointer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-117, 25)
+scale = Vector2(2, 1.817)
+texture = ExtResource("2_wkyil")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_joh0y")
+}

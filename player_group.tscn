@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://djo6nhex3sb5t"]
+
+[ext_resource type="PackedScene" uid="uid://dtk2vi36hmld8" path="res://character.tscn" id="1_3jhb5"]
+[ext_resource type="Script" path="res://player_group.gd" id="1_t4mxh"]
+[ext_resource type="Texture2D" uid="uid://dvbb0sn2pmsx0" path="res://owlfoxes.png" id="2_083ye"]
+[ext_resource type="PackedScene" uid="uid://dgr65jld1y2r" path="res://jeremy.tscn" id="4_4hyk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unwpv"]
+atlas = ExtResource("2_083ye")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6q4l"]
+atlas = ExtResource("2_083ye")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyurn"]
+atlas = ExtResource("2_083ye")
+region = Rect2(160, 0, 32, 32)
+
+[node name="PlayerGroup" type="Node2D"]
+script = ExtResource("1_t4mxh")
+
+[node name="Character" parent="." instance=ExtResource("1_3jhb5")]
+position = Vector2(819, 110)
+
+[node name="Sprite2D" parent="Character" index="0"]
+texture = SubResource("AtlasTexture_unwpv")
+
+[node name="HealthBar" parent="Character" index="1"]
+offset_top = -56.0
+offset_bottom = -33.0
+
+[node name="Pointer" parent="Character" index="2"]
+position = Vector2(104, 25)
+flip_h = true
+
+[node name="Character2" parent="." instance=ExtResource("1_3jhb5")]
+position = Vector2(819, 110)
+
+[node name="Sprite2D" parent="Character2" index="0"]
+texture = SubResource("AtlasTexture_p6q4l")
+
+[node name="HealthBar" parent="Character2" index="1"]
+offset_top = -56.0
+offset_bottom = -33.0
+
+[node name="Pointer" parent="Character2" index="2"]
+position = Vector2(104, 25)
+flip_h = true
+
+[node name="Character3" parent="." instance=ExtResource("1_3jhb5")]
+position = Vector2(819, 110)
+
+[node name="Sprite2D" parent="Character3" index="0"]
+texture = SubResource("AtlasTexture_nyurn")
+
+[node name="HealthBar" parent="Character3" index="1"]
+offset_top = -56.0
+offset_bottom = -33.0
+
+[node name="Pointer" parent="Character3" index="2"]
+position = Vector2(104, 25)
+flip_h = true
+
+[node name="Jeremy" parent="." instance=ExtResource("4_4hyk1")]
+unique_name_in_owner = true
+
+[editable path="Character"]
+[editable path="Character2"]
+[editable path="Character3"]
