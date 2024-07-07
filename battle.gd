@@ -7,6 +7,7 @@ var actions: Array
 
 func _ready():
 	v_box_container.visible = false
+	print("We're on Github Now!")
 
 func _on_fight_pressed():
 	v_box_container.visible = false
