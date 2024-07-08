@@ -39,7 +39,6 @@ func reset_choice():
 	index = 0
 	for i in players:
 		i.unchoose()
-		i.is_protected = false
 	players[0].choose()
 	
 func _on_enemy_group_next_player_turn():
