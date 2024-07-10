@@ -44,6 +44,7 @@ text = "Run
 
 [connection signal="make_choice" from="PlayerGroup" to="." method="_on_player_group_make_choice"]
 [connection signal="make_choice" from="PlayerGroup" to="EnemyGroup" method="_on_player_group_make_choice"]
+[connection signal="empty_queue" from="EnemyGroup" to="PlayerGroup" method="_on_enemy_group_empty_queue"]
 [connection signal="next_player_turn" from="EnemyGroup" to="PlayerGroup" method="_on_enemy_group_next_player_turn"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Fight" to="." method="_on_fight_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Defend" to="." method="_on_defend_pressed"]

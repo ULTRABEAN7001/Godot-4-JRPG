@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://djo6nhex3sb5t"]
+[gd_scene load_steps=7 format=3 uid="uid://djo6nhex3sb5t"]
 
 [ext_resource type="PackedScene" uid="uid://dtk2vi36hmld8" path="res://character.tscn" id="1_3jhb5"]
 [ext_resource type="Script" path="res://player_group.gd" id="1_t4mxh"]
 [ext_resource type="Texture2D" uid="uid://dvbb0sn2pmsx0" path="res://owlfoxes.png" id="2_083ye"]
-[ext_resource type="PackedScene" uid="uid://dgr65jld1y2r" path="res://jeremy.tscn" id="4_4hyk1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unwpv"]
 atlas = ExtResource("2_083ye")
@@ -61,9 +60,6 @@ offset_bottom = -33.0
 [node name="Pointer" parent="Character3" index="2"]
 position = Vector2(104, 25)
 flip_h = true
-
-[node name="Jeremy" parent="." instance=ExtResource("4_4hyk1")]
-unique_name_in_owner = true
 
 [editable path="Character"]
 [editable path="Character2"]
