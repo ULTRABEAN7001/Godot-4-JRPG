@@ -54,3 +54,4 @@ func _on_enemy_group_empty_queue():
 	for i in players:
 		i.unchoose()
 		i.is_protected = false
+	reset_choice()
