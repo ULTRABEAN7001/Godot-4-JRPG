@@ -24,4 +24,10 @@ func take_damage(d):
 		animation_player.play("hurt")
 	if is_protected == true:
 		animation_player.play("defended")
+		
+func defend():
+	is_protected = true	
+	
+func undefend():
+	is_protected = false
 	

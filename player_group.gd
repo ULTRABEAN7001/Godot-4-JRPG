@@ -41,17 +41,17 @@ func reset_choice():
 		i.unchoose()
 	players[0].choose()
 	
+	
 func _on_enemy_group_next_player_turn():
 	player_turn = true
 	reset_choice()
 
 
 func _on_defend_pressed():
-	players[index].is_protected = true
+	players[index].defend()
 
 
 func _on_enemy_group_empty_queue():
 	for i in players:
-		i.unchoose()
-		i.is_protected = false
+		i.undefend()
 	reset_choice()
