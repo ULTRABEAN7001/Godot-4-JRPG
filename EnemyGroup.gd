@@ -27,6 +27,7 @@ func _process(delta):
 	#Happens when all players have made a move	
 	if battle_queue.size() == enemies.size():
 		#uses functions per nummber of moves
+		player_group.can_choose = false
 		for f in range(enemies.size()): 
 			#calls the first function
 			battle_queue[0].call(battle_index[0])
@@ -38,7 +39,7 @@ func _process(delta):
 		#prepares the arrays for the next cycle
 		battle_queue.clear()
 		battle_index.clear()
-		reset_choice()
+		reset_choice() 
 		emit_signal("next_player_turn")
 		#lets player_group know to disable defenses
 		emit_signal("empty_queue")

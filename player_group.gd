@@ -3,6 +3,7 @@ extends Node2D
 @onready var players: Array = get_children()
 var index = 0
 var player_turn = true
+var can_choose = true
 signal make_choice
 @onready var chosen_player = players[index]
 
@@ -15,7 +16,7 @@ func _ready():
 func _process(delta):
 	
 	#lets you choose the player
-	if player_turn == true:
+	if player_turn == true and can_choose == true:
 		if Input.is_action_just_pressed("ui_up"):
 			if index > 0:
 				index -= 1
@@ -50,8 +51,8 @@ func _on_enemy_group_next_player_turn():
 func _on_defend_pressed():
 	players[index].defend()
 
-
 func _on_enemy_group_empty_queue():
 	for i in players:
 		i.undefend()
+	can_choose = true
 	reset_choice()
